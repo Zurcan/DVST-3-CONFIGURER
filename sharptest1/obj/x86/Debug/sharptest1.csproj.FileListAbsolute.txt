@@ -1,0 +1,152 @@
+c:\documents and settings\metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+c:\documents and settings\metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+c:\documents and settings\metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\documents and settings\metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+c:\documents and settings\metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+c:\documents and settings\metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\documents and settings\metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\documents and settings\metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+c:\documents and settings\metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\San4o\My Documents\Visual Studio 2010\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+E:\work&edu\visual studio projects\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+E:\work&edu\visual studio projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+E:\work&edu\visual studio projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+E:\work&edu\visual studio projects\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+E:\work&edu\visual studio projects\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+E:\work&edu\visual studio projects\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\work&edu\visual studio projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+E:\work&edu\visual studio projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+E:\work&edu\visual studio projects\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\work&edu\visual studio projects\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Metelkin\мои документы\visual studio 2010\Projects\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+H:\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+H:\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+H:\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+H:\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+H:\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+H:\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+H:\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+H:\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+H:\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Admin\Мои документы\Downloads\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Admin\Рабочий стол\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+F:\work\sharptest_28_04_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\ВТ-003\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\zurcan\Desktop\вт-003_программа\sharptest_27_08_12\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Alexandr\Desktop\flash\sharptest1\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Alexandr\Desktop\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Users\Alexandr\Desktop\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Users\Alexandr\Desktop\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Users\Alexandr\Desktop\sharptest1\sharptest1\bin\Debug\sharptest1.exe
+C:\Users\Alexandr\Desktop\sharptest1\sharptest1\bin\Debug\sharptest1.pdb
+C:\Users\Alexandr\Desktop\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Users\Alexandr\Desktop\sharptest1\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Users\Alexandr\Desktop\sharptest1\sharptest1\obj\x86\Debug\sharptest1.csproj.GenerateResource.Cache
+C:\Users\Alexandr\Desktop\sharptest1\sharptest1\obj\x86\Debug\sharptest1.csprojResolveAssemblyReference.cache
+C:\Documents and Settings\Metelkin\Рабочий стол\sharptest1\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Documents and Settings\Metelkin\Рабочий стол\sharptest1\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\sharptest1\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\bin\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\bin\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\ДВСТ-3 - конфигуратор исходники\sharptest1\obj\x86\Debug\GenerateResource.write.1.tlog
