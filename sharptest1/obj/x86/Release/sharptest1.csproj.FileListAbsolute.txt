@@ -18,3 +18,19 @@ C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\shar
 C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Release\sharptest1.Properties.Resources.resources
 C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Release\GenerateResource.read.1.tlog
 C:\Documents and Settings\Metelkin\Рабочий стол\flash\sharptest1\sharptest1\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.exe.config
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.Form1.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.Properties.Resources.resources
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.exe.manifest
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.application
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.exe.manifest
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.application

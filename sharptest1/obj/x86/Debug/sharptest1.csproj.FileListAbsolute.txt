@@ -159,3 +159,6 @@ C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.
 C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.csproj.GenerateResource.Cache
 C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.exe
 C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.pdb
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.pdb
