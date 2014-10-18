@@ -103,7 +103,7 @@ namespace sharptest1
                         открытьToolStripMenuItem.Enabled = true;
                         //this.panel1.Enabled = false;
                         panel3.Enabled = false;
-                        button2.Enabled = false;
+                        button2.Enabled = true;
                         listView1.Items.Clear();
                     }
                     else serialPort1.Open();
@@ -261,6 +261,15 @@ namespace sharptest1
                 this.textBox15.Text = BitConverter.ToSingle(HartProtocol.SensorCurrentValue, 0).ToString();
                 this.textBox16.Text = BitConverter.ToSingle(HartProtocol.SensorDiapPrcnt, 0).ToString();
             }
+            if (HartProtocol.RecievedCommand == 0x30)
+            {
+                this.textBox6.Text = BitConverter.ToSingle(HartProtocol.calibrationK, 0).ToString();
+                this.textBox7.Text = BitConverter.ToSingle(HartProtocol.calibrationB, 0).ToString();
+                this.textBox21.Text = BitConverter.ToSingle(HartProtocol.calibrationK, 0).ToString();
+                this.textBox22.Text = BitConverter.ToSingle(HartProtocol.calibrationB, 0).ToString();
+                
+            }
+
         }
 
         #region ByteToHex
@@ -397,6 +406,10 @@ namespace sharptest1
                 //{
                 //    HartProtocol.MeasuredCurrent[3 - i] = bfloat[i];
                 //}
+
+            }
+            if (this.comboBox2.SelectedIndex == 26) // запрос на получение калибровочных коэффициентов
+            {
 
             }
             this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(this.comboBox2.SelectedIndex));
@@ -652,7 +665,8 @@ namespace sharptest1
         private void button6_Click(object sender, EventArgs e)
         {
             float ftext;
-
+            serialPort1.DiscardInBuffer();
+            serialPort1.DiscardOutBuffer();
             if (comboBox3.SelectedIndex == 0) upperlimit = "10";
             if (comboBox3.SelectedIndex == 1) upperlimit = "20";
             if (comboBox3.SelectedIndex == 2) upperlimit = "30";
@@ -682,7 +696,11 @@ namespace sharptest1
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (textBox1.Enabled) textBox1.Enabled = false;
+            if (textBox1.Enabled)
+            {
+                textBox1.Enabled = false;
+                button2.Enabled = true;
+            }
             else textBox1.Enabled = true;
         }
 
@@ -780,7 +798,7 @@ namespace sharptest1
                 администраторToolStripMenuItem.Checked = true;
                 пользовательToolStripMenuItem.Checked = false;
                 toolStripTextBox1.Text = "";
-                if (button1.Text == "Закрыть") button2.Enabled = true;
+                if (button1.Text == "Закрыть COM порт") button2.Enabled = true;
                 textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Начало сессии администратора\r\n");
             }
                 
@@ -815,7 +833,7 @@ namespace sharptest1
                     администраторToolStripMenuItem.Checked = true;
                     пользовательToolStripMenuItem.Checked = false;
                     toolStripTextBox1.Text = "";
-                    if (button1.Text == "Закрыть") button2.Enabled = true;
+                    if (button1.Text == "Закрыть COM порт") button2.Enabled = true;
                     textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Начало сессии администратора\r\n");
                 }
             }
@@ -1202,10 +1220,11 @@ namespace sharptest1
                 //    buffer[i] = (byte)serialPort1.ReadByte();
 
                 //}
+                
                 this.serialPort1.Read(buffer, 0, serialPort1.BytesToRead);
                 //Array.Reverse(buffer);
 
-
+                System.Diagnostics.Debug.WriteLine(ByteToHex(buffer));
                 if (HartProtocol.CheckMessageIntegrity(buffer))
                 {
                     // HartProtocol.CutOffGhostBytes(buffer);
@@ -1213,6 +1232,7 @@ namespace sharptest1
                     spRead = ByteToHex(buffer);
 
                     byte[] buffer_ = HartProtocol.CutOffPreambulasRecieved(buffer);
+                    
                     buffer_ = HartProtocol.CutOffGhostBytes(buffer_);
                     if (HartProtocol.CheckCRC(buffer_) == 1)
                     {
@@ -1222,11 +1242,36 @@ namespace sharptest1
                         ReadDataCRCOk = true;
                         if (HartProtocol.LastSendedCommand == 14)
                         {
+                            
                             spRead += "\r\n" + (DateTime.Now.ToString() + " ---> ");
-                            if (upperlimit == "10") spRead += "установлен диапазон измерений 0-10 мм/с";
-                            if (upperlimit == "20") spRead += "установлен диапазон измерений 0-20 мм/с";
-                            if (upperlimit == "30") spRead += "установлен диапазон измерений 0-30 мм/с";
-                            if (upperlimit == "50") spRead += "установлен диапазон измерений 0-50 мм/с";
+                            if (upperlimit == "10")
+                            {
+                                spRead += "установлен диапазон измерений 0-10 мм/с";
+                                tmpItem[4] = "0...10 мм/с";
+                            }
+                            if (upperlimit == "20")
+                            {
+                                spRead += "установлен диапазон измерений 0-20 мм/с";
+                                tmpItem[4] = "0...20 мм/с";
+                            }
+                            if (upperlimit == "30")
+                            {
+                                spRead += "установлен диапазон измерений 0-30 мм/с";
+                                tmpItem[4] = "0...30 мм/с";
+                            }
+                            if (upperlimit == "50")
+                            {
+                                spRead += "установлен диапазон измерений 0-50 мм/с";
+                                tmpItem[4] = "0...50 мм/с";
+                            }
+                            
+                            ListViewItem NewItem = new ListViewItem(tmpItem, 1);
+                            NewItem.UseItemStyleForSubItems = true;
+                            NewItem.ForeColor = Color.BlueViolet;
+                            listView1.Items.RemoveAt(0);
+                            listView1.Items.Add(NewItem);
+                            
+                            
                         }
                     }
                     else
@@ -1254,7 +1299,29 @@ namespace sharptest1
                 }
                 // }
             }
+            this.serialPort1.DiscardInBuffer();
             // ReadBytesLastCycle = serialPort1.BytesToRead;
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(26));
+            SendHartMessage();
+        }
+
+        private void textBox20_TextChanged(object sender, EventArgs e)
+        {
+            this.textBox23.Text = "CRC-16";
+        }
+
+        private void textBox23_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            this.textBox24.Text = "ПО ДВСТ-3";
         }
     }
 }

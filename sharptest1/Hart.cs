@@ -10,7 +10,7 @@ public class HartProtocol
         
     //}
 
-    public static int WaitingBytesQ = 8, ManufacturerID, DevTypeCode, PVunitsCode, UniversalComRev, DevSpecComRev, SoftwareRev, HardwareRev, DevFuncFlags, DevIDNumber;
+    public static int WaitingBytesQ = 8, ManufacturerID, DevTypeCode, PVunitsCode, UniversalComRev, DevSpecComRev, SoftwareRev, HardwareRev, DevFuncFlags, DevIDNumber,RangeIndex=0;
     public static int NumberOfPreambulas_send = 4, RecievedCommand, NumberOfPreambulas=4;
     public static int BurstModeEnabled = 0;
     public static int LastSendedCommand = 0;
@@ -18,6 +18,8 @@ public class HartProtocol
     public static int MasterAddress = 0x80;
     public static int SensorSerialNumber = 0x0000;
     public static int lastCommand = 0;
+    public static byte[] calibrationK = new byte[4];
+    public static byte[] calibrationB = new byte[4];
     public static byte[] SensorCurrentValue = new byte[4];
     public static byte[] SensorDiapPrcnt = new byte[4];
     public static byte[] PV = new byte[4];
@@ -37,8 +39,8 @@ public class HartProtocol
     public static byte ActualSoftwareRev = 0x00;
     public static byte ActualDevFuncFlags = 0x00;
     public static byte OperationMode = 0;
-    public static int[] CommandDataAnswerBytes = new int[32]   { 12, 5, 8, 9, 1, 12, 24, 21, 16, 17,  3, 24, 21,  3,  9,  0,  0,  0,  4,  0,  0,  0,  1,  4,  4,  1,  25, 3,  1,   1,   1,   1};
-    private static int[] CommandDataRequestBytes = new int[32] { 0,  0, 0, 0, 1,  6,  0,  0,  0,  0,  0, 24, 21,  3,  9,  0,  0,  0,  4,  0,  0,  0,  1,  4,  4,  1,  0,  3,  1,   1,   1,   0};
+    public static int[] CommandDataAnswerBytes = new int[32]   { 12, 5, 8, 9, 1, 12, 24, 21, 16, 17,  3, 24, 21,  3,  9,  0,  0,  0,  4,  0,  0,  0,  1,  4,  4,  1, 14, 3,  1,   1,   1,   1};
+    private static int[] CommandDataRequestBytes = new int[32] { 0,  0, 0, 0, 1,  6,  0,  0,  0,  0,  0, 24, 21,  3,  9,  0,  0,  0,  4,  0,  0,  0,  1,  4,  4,  1, 16, 3,  1,   1,   1,   0};
     private static int[] CommandNumbersArray = new int[32]     { 0,  1, 2, 3, 6, 11, 12, 13, 14, 15, 16, 17, 18, 19, 35, 36, 37, 38, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 59, 108, 109, 111};
     public static byte[] GenerateRequest(int commNumber)
     {
@@ -115,6 +117,14 @@ public class HartProtocol
                                 SensorDiapPrcnt[i] = ReadBuff_[10 + i ];
                             }
                         }
+                        if (RecievedCommand == 48)
+                        {
+                            for (int i = 0; i < 4; i++)
+                            {
+                                calibrationK[i] = ReadBuff_[12 + i];
+                                calibrationB[i] = ReadBuff_[16 + i];
+                            }
+                        }
                     }
                     else { }//ошибка формирования фрейма
 
@@ -150,7 +160,7 @@ public class HartProtocol
 
     public static byte[] ReadInputdataToSend(int commNumber)//здесь в зависимости от команды выбираем, что будем слать
     {
-        byte[] dataToSend = new byte[CommandDataAnswerBytes[commNumber]];
+        byte[] dataToSend = new byte[CommandDataRequestBytes[commNumber]];//
         
         
             if (commNumber == 4) 
@@ -191,7 +201,7 @@ public class HartProtocol
                 dataToSend[0] = (byte)HartProtocol.PVunitsCode;//единицы измерения первичной переменной
                 for (int i = 1; i < 5; i++)
                 {
-                    dataToSend[i] = HartProtocol.UpperRangeLimit[i-1];//верхний предел диапазона
+                    dataToSend[i] = HartProtocol.UpperRangeLimit[i - 1];//верхний предел диапазона
                     dataToSend[i + 4] = HartProtocol.LowerRangeLimit[i - 1];//нижний предел диапазона
                 }
             }

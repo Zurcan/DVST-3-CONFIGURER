@@ -34,3 +34,16 @@ C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-
 C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.application
 C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.exe.manifest
 C:\Documents and Settings\Metelkin\Рабочий стол\ДВСТ-3 ПО\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.application
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.exe.config
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.exe
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.pdb
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.exe.manifest
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.application
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.exe
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\bin\Release\sharptest1.pdb
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.Form1.resources
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.Properties.Resources.resources
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.csproj.GenerateResource.Cache
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.exe.manifest
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.application
+C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Release\sharptest1.csprojResolveAssemblyReference.cache
