@@ -117,6 +117,14 @@ public class HartProtocol
                                 SensorDiapPrcnt[i] = ReadBuff_[10 + i ];
                             }
                         }
+                        if (RecievedCommand == 16)
+                        {
+                            for (int i = 0; i < 3; i++)
+                            {
+                                SensorSerialNumber += (Int32)(ReadBuff_[6 + i]<<((2-i)*8));
+                                
+                            }
+                        }
                         if (RecievedCommand == 48)
                         {
                             for (int i = 0; i < 4; i++)

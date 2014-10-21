@@ -870,6 +870,7 @@ namespace sharptest1
                 progressBar1.Value = 15;
                 HartProtocol.SlaveAddress = 0;
                 HartProtocol.LastSendedCommand = 0;
+                HartProtocol.SensorSerialNumber = 0;
                 this.serialPort1.DiscardInBuffer();
                 this.serialPort1.DiscardOutBuffer();
                 this.button10.Text = "Поиск";
