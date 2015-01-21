@@ -155,7 +155,7 @@ public class HartProtocol
     {
         int i=0;
         Array.Reverse(rec_mes);//"переворачиваем" сообщение
-        Array.Resize(ref rec_mes,rec_mes.Length-2);//обрезаем 2 первых байта в сообщении
+        Array.Resize(ref rec_mes,rec_mes.Length-4);//обрезаем 2 первых байта в сообщении
         Array.Reverse(rec_mes);//"переворачиваем" сообщение
         while(rec_mes[i]==0xFF)//теперь ждем, пока преамбулы закончатся, обрезая их на каждой итерации
         {

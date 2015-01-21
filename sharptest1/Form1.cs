@@ -43,18 +43,20 @@ namespace sharptest1
                 toolStripComboBox1.Items.Add(port);
             }
             
-            this.comboBox1.SelectedIndex = ports.Length-1;
+           // this.comboBox1.SelectedIndex = ports.Length-1;
             this.comboBox3.SelectedIndex = 0;
             serialPort1.ReceivedBytesThreshold = 1;// HartProtocol.WaitingBytesQ;
             //this.textBox3.Text = HartProtocol.WaitingBytesQ.ToString();
             this.textBox4.Text = HartProtocol.NumberOfPreambulas.ToString();
-            this.textBox5.Text = timer1.Interval.ToString();
+          //  this.textBox5.Text = timer1.Interval.ToString();
             this.comboBox2.SelectedIndex = 0;
             toolStripComboBox1.SelectedIndex = ports.Length-1;
             this.panel1.Enabled = false;
             button2.Enabled = false;
             this.panel3.Enabled = false;
             this.textBox2.AppendText((DateTime.Now.ToString()+" ---> ")+"Начало сессии пользователя\r\n");
+            this.tabPage1.Hide();
+            this.label6.Text = "Выберите COM порт";
             //пользовательToolStripMenuItem.Checked = true;
         }
 
@@ -69,6 +71,7 @@ namespace sharptest1
                     
                     if (!serialPort1.IsOpen)
                     {
+                        this.label6.Text = "Нажмите <Поиск> для определения подключённых к СОМ порту устроств";
                         button1.Text = "Закрыть СОМ порт";
                         serialPort1.PortName = this.comboBox1.SelectedItem.ToString();
                         toolStripComboBox1.SelectedIndex=comboBox1.SelectedIndex;
@@ -93,8 +96,10 @@ namespace sharptest1
                     {
                        // serialPort1.PortName = this.comboBox1.SelectedItem.ToString();
                         serialPort1.Close();
-                        this.panel2.Enabled = false;
+                       // this.panel2.Enabled = false;
                         this.groupBox2.Enabled = false;
+                        groupBox4.Enabled = false;
+                        groupBox3.Enabled = false;
                         button1.Text = "Открыть COM порт";
                         textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "закрыт последовательный порт " + this.comboBox1.SelectedItem.ToString() + "\r\n");
                         comboBox1.Enabled = true;
@@ -105,6 +110,8 @@ namespace sharptest1
                         panel3.Enabled = false;
                         button2.Enabled = true;
                         listView1.Items.Clear();
+                        this.label6.Text = "Выберите COM порт";
+                        comboBox1.SelectedIndex = -1;
                     }
                     else serialPort1.Open();
                 }
@@ -134,6 +141,20 @@ namespace sharptest1
         private void SendHartMessage()
         {
             float ftext;
+            if (listView1.Items.Count > 0)
+            {
+                if (listView1.Items.Count == 1)
+                {
+                    listView1.Items[0].Focused = true;
+                    listView1.Items[0].Selected = true;
+                    HartProtocol.SlaveAddress = Convert.ToByte(listView1.Items[0].Text);
+                }
+                else
+                {
+                    HartProtocol.SlaveAddress = Convert.ToByte(listView1.FocusedItem.Text);
+                }
+
+            }
             if (this.comboBox2.SelectedIndex == 17)
             {
                 HartProtocol.PVunitsCode = (int)Convert.ToInt32("20");
@@ -154,7 +175,7 @@ namespace sharptest1
                 timer3.Start();
                 if (this.checkBox1.Checked)
                 {
-                    this.timer1.Interval = Convert.ToInt16(this.textBox5.Text);//проверяем, что записано в графе интервала таймера, устанавливаем в качестве интервала и
+                    this.timer1.Interval = Convert.ToInt16(this.numericUpDown2.Value);//textBox5.Text);//проверяем, что записано в графе интервала таймера, устанавливаем в качестве интервала и
                     this.timer1.Start();//стартуем таймер
                 }
             }
@@ -248,25 +269,33 @@ namespace sharptest1
             if (HartProtocol.RecievedCommand == 0x01)
             {
 
-                this.textBox7.Text = BitConverter.ToSingle(HartProtocol.PV, 0).ToString();
+                this.textBox7.Text = Math.Round(BitConverter.ToSingle(HartProtocol.PV, 0),2).ToString();
                 this.textBox6.Text = Convert.ToString(HartProtocol.PVunitsCode);
-                this.textBox18.Text = BitConverter.ToSingle(HartProtocol.PV, 0).ToString();
-                this.textBox17.Text = "0 - "+Convert.ToString(HartProtocol.PVunitsCode)+" мм/с";
+                this.textBox18.Text = Math.Round(BitConverter.ToSingle(HartProtocol.PV, 0),2).ToString();
+                Single currentval,pv,sensordiap;
+                
+                pv = BitConverter.ToSingle(HartProtocol.PV, 0);
+                currentval = 4 + 16 * (pv/HartProtocol.PVunitsCode);
+                sensordiap = 100*pv / HartProtocol.PVunitsCode;
+                this.textBox15.Text = Math.Round(currentval, 2).ToString();
+                this.textBox16.Text = Math.Round(sensordiap, 2).ToString();
+              //  this.textBox17.Text = "0 - "+Convert.ToString(HartProtocol.PVunitsCode)+" мм/с";
                 //this.textBox7.Text = ByteToHex(HartProtocol.PV);
             }
             if (HartProtocol.RecievedCommand == 0x02)
             {
-                this.textBox6.Text = BitConverter.ToSingle(HartProtocol.SensorCurrentValue, 0).ToString(); 
-                this.textBox7.Text = BitConverter.ToSingle(HartProtocol.SensorDiapPrcnt, 0).ToString();
-                this.textBox15.Text = BitConverter.ToSingle(HartProtocol.SensorCurrentValue, 0).ToString();
-                this.textBox16.Text = BitConverter.ToSingle(HartProtocol.SensorDiapPrcnt, 0).ToString();
+                
+                this.textBox6.Text = Math.Round(BitConverter.ToSingle(HartProtocol.SensorCurrentValue, 0),2).ToString(); 
+                this.textBox7.Text = Math.Round(BitConverter.ToSingle(HartProtocol.SensorDiapPrcnt, 0),2).ToString();
+                this.textBox15.Text = Math.Round(BitConverter.ToSingle(HartProtocol.SensorCurrentValue, 0),2).ToString();
+                this.textBox16.Text = Math.Round(BitConverter.ToSingle(HartProtocol.SensorDiapPrcnt, 0),2).ToString();
             }
             if (HartProtocol.RecievedCommand == 0x30)
             {
-                this.textBox6.Text = BitConverter.ToSingle(HartProtocol.calibrationK, 0).ToString();
-                this.textBox7.Text = BitConverter.ToSingle(HartProtocol.calibrationB, 0).ToString();
-                this.textBox21.Text = BitConverter.ToSingle(HartProtocol.calibrationK, 0).ToString();
-                this.textBox22.Text = BitConverter.ToSingle(HartProtocol.calibrationB, 0).ToString();
+                this.textBox6.Text = Math.Round(BitConverter.ToSingle(HartProtocol.calibrationK, 0),2).ToString();
+                this.textBox7.Text = Math.Round(BitConverter.ToSingle(HartProtocol.calibrationB, 0),2).ToString();
+                this.textBox21.Text = Math.Round(BitConverter.ToSingle(HartProtocol.calibrationK, 0), 2).ToString();
+                this.textBox22.Text = Math.Round(BitConverter.ToSingle(HartProtocol.calibrationB, 0),2).ToString();
                 
             }
 
@@ -420,8 +449,8 @@ namespace sharptest1
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)//если галка циклической отправки стоит, то разрешаем изменять интервал таймера
         {
-            if (this.checkBox1.Checked) this.textBox5.Enabled=true;
-            else this.textBox5.Enabled = false;
+            if (this.checkBox1.Checked) this.numericUpDown2.Enabled = true;//textBox5.Enabled=true;
+            else this.numericUpDown2.Enabled = false;//this.textBox5.Enabled = false;
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)//выбор формы для соответствующего запроса
@@ -664,6 +693,7 @@ namespace sharptest1
 
         private void button6_Click(object sender, EventArgs e)
         {
+            label6.Text = "";
             float ftext;
             serialPort1.DiscardInBuffer();
             serialPort1.DiscardOutBuffer();
@@ -690,6 +720,9 @@ namespace sharptest1
 
         private void button8_Click(object sender, EventArgs e)
         {
+
+
+            label6.Text = "";
             this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(1));
             SendHartMessage();
         }
@@ -706,11 +739,16 @@ namespace sharptest1
 
         private void button9_Click(object sender, EventArgs e)
         {
-            int length = HartProtocol.NumberOfPreambulas - 1 + 3;
-            byte[] tmp = new byte[length];
-            tmp = HartProtocol.GenerateRequest(17);
-            this.textBox1.Text = ByteToHex(tmp);
-            SendHartMessage();
+            label6.Text = "";
+            var result = MessageBox.Show("Внимание! При сбросе калибровочные коэффициенты примут значения, установленные <по умолчанию>, это приведёт к изменению метрологически значимых настроек. Если Вы не уверены в необходимости сброса - откажитесь от её проведения, нажав <Отмена>, иначе - <OK>", "Предупреждение", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                int length = HartProtocol.NumberOfPreambulas - 1 + 3;
+                byte[] tmp = new byte[length];
+                tmp = HartProtocol.GenerateRequest(17);
+                this.textBox1.Text = ByteToHex(tmp);
+                SendHartMessage();
+            }
            // this.textBox2.AppendText("Возвращены заводские установки \r\n");
         }
 
@@ -779,14 +817,15 @@ namespace sharptest1
             panel3.Enabled = false;
             listView1.Items.Clear();
             panel1.Enabled = false;
-            panel2.Enabled = false;
+           // panel2.Enabled = false;
             groupBox2.Enabled = false;
             //if (panel1.Enabled) button2.Enabled = false;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            this.label6.Text = "Нажмите <Открыть COM порт>";
+            this.button1.Enabled = true;
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -851,6 +890,13 @@ namespace sharptest1
             if (this.button10.Text == "Поиск")
             {
                 listView1.Items.Clear();
+                button11.Enabled = false;
+                groupBox5.Enabled = false;
+                groupBox4.Enabled = false;
+                groupBox3.Enabled = false;
+                //  panel2.Enabled = false;
+                groupBox2.Enabled = false;
+              //  this.label6.Text = "Нажмите <Поиск> для определения подключённых к СОМ порту устроств";
                 ReadDataCRCOk = false;
                 ReadDataCRCError = 0;
                 HartProtocol.SlaveAddress = 0;
@@ -877,6 +923,7 @@ namespace sharptest1
                 this.textBox2.AppendText("\r\n" + (DateTime.Now.ToString() + " ---> ") + "Поиск доступных устройств завершен\r\n");
                // MessageBox.Show( "Поиск устройств завершен!", "Внимание!");
                 progressBar1.Value = 0;
+                this.label6.Text = "Если в списке более 1-го подключённого устройства, выберите устройство для дальнейшей работы";
                 //ReadDataCRCError = 7;
                 //if (listView1.Items.Count != 0)
                 //{
@@ -887,13 +934,27 @@ namespace sharptest1
 
         private void button11_Click(object sender, EventArgs e)
         {
-            listView1.Items.Remove(listView1.FocusedItem);
-
+         //   listView1.Items.Remove(listView1.FocusedItem);
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                if ((listView1.Items[i].Focused == true)|(listView1.Items[i].Selected==true))
+                    listView1.Items[i].Remove();
+                //button11.Enabled = false;
+                //groupBox5.Enabled = false;
+                //groupBox4.Enabled = false;
+                //groupBox3.Enabled = false;
+                ////  panel2.Enabled = false;
+                //groupBox2.Enabled = false;
+            }
             if (listView1.Items.Count == 0)
             {
                 button11.Enabled = false;
-                panel2.Enabled = false;
+                groupBox5.Enabled = false;
+                groupBox4.Enabled = false;
+                groupBox3.Enabled = false;
+              //  panel2.Enabled = false;
                 groupBox2.Enabled = false;
+                this.label6.Text = "Нажмите <Поиск> для определения подключённых к СОМ порту устроств";
             }
            // else listView1.SelectedItems.IndexOf = listView1.FocusedItem.Index;
             //listView1.Items.GetEnumerator().MoveNext();
@@ -961,8 +1022,22 @@ namespace sharptest1
                 ListViewItem NewItem = new ListViewItem(tmpItem, 1);
                 NewItem.UseItemStyleForSubItems = true;
                 NewItem.ForeColor = Color.BlueViolet;
+                
+                //NewItem.Selected = true;
                 listView1.Items.Add(NewItem);
+                //if(listView1.Items.Count!=0)
+                  
+                //if (listView1.FocusedItem == NewItem) ; //= NewItem;
+                //NewItem.Selected = true;
+               // listView1.SetBounds(
+              //  listView1.Select();
                 this.textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "добалвено устройство с адресом " + tmpItem[0] + "\r\n");
+                if (listView1.Items.Count != 0)
+                {
+                    listView1.Items[0].Focused = true;
+                    listView1.Items[0].Selected = true;
+                    
+                }
             }
             else
             {
@@ -1072,10 +1147,35 @@ namespace sharptest1
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
            // this.textBox2.AppendText(listView1.FocusedItem.Text);
-            HartProtocol.SlaveAddress = Convert.ToByte(listView1.FocusedItem.Text);
+            if (listView1.Items.Count > 0)
+            {
+                if (listView1.Items.Count == 1)
+                {
+                    listView1.Items[0].Focused = true;
+                    listView1.Items[0].Selected = true;
+                    HartProtocol.SlaveAddress = Convert.ToByte(listView1.Items[0].Text);
+                }
+                else
+                {
+                    HartProtocol.SlaveAddress = Convert.ToByte(listView1.FocusedItem.Text);
+                }
+
+            }
+
+                
+            
             //textBox2.AppendText(listView1.FocusedItem.ToString());
-            if (listView1.Items.Count != 0) button11.Enabled = true;
-            else button11.Enabled = false;
+            if (listView1.Items.Count != 0)
+            {
+                button11.Enabled = true;
+                groupBox5.Enabled = true;
+            }
+            else
+            {
+                button11.Enabled = false;
+                groupBox5.Enabled = false;
+            }
+            
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -1093,7 +1193,9 @@ namespace sharptest1
             if (listView1.SelectedItems.Count != 0)
             {
                 button11.Enabled = true;
-                panel2.Enabled = true;
+                groupBox4.Enabled = true;
+                groupBox3.Enabled = true;
+                //panel2.Enabled = true;
                 groupBox2.Enabled = true;
             }
             else button11.Enabled = false;
@@ -1120,18 +1222,18 @@ namespace sharptest1
 
         private void listView1_MouseMove(object sender, MouseEventArgs e)//в случае, если ни один из элементов не выбран, кнопка "удалить" неактивна
         {
-            if (listView1.SelectedItems.Count != 0)
-            {
-                button11.Enabled = true;
-                panel2.Enabled = true;
-                groupBox2.Enabled = true;
-            }
-            else
-            {
-                button11.Enabled = false;
-                panel2.Enabled = false;
-                groupBox2.Enabled = false;
-            }
+            //if (listView1.SelectedItems.Count != 0)
+            //{
+            //    button11.Enabled = true;
+            //    //panel2.Enabled = true;
+            //    groupBox2.Enabled = true;
+            //}
+            //else
+            //{
+            //    button11.Enabled = false;
+            //    //panel2.Enabled = false;
+            //    groupBox2.Enabled = false;
+            //}
         }
 
         private void label24_Click(object sender, EventArgs e)
@@ -1147,46 +1249,51 @@ namespace sharptest1
 
         private void button13_Click(object sender, EventArgs e)
         {
+            label6.Text = "";
             textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Начало калибровки\r\n");
-            var result = MessageBox.Show("Для калибровки в точке 5% установите на рабочем эталоне уровень вибрации, соответствующий 5% от диапазона преобразования датчика, нажмите кнопку <OK>, для отмены нажмите кнопку <Отмена>", "Калибровка датчика ДВСТ-3, 5% диапазона преобразования датчика", MessageBoxButtons.OKCancel);
+            var result = MessageBox.Show("Внимание! При проведении калибровки будут изменены калибровочные коэффициенты. Значения калибровочных коэффициентов должны быть указаны в свидетельстве о поверке. Если Вы не уверены в необходимости калибровки - откажитесь от её проведения, нажав <Отмена>, иначе - <OK>.", "Предупреждение", MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
-                textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка в первой точке 5% диапазона преобразования датчика...\r\n");
-                int length = HartProtocol.NumberOfPreambulas - 1 + 3;
-                byte[] tmp = new byte[length];
-                tmp = HartProtocol.GenerateRequest(21);
-                this.textBox1.Text = ByteToHex(tmp);
-                SendHartMessage();
-                result = MessageBox.Show("Для калибровки в точке 100% установите на рабочем эталоне уровень вибрации, соответствующий 100% от диапазона преобразования датчика, нажмите кнопку <OK>, для отмены нажмите кнопку <Отмена>", "Калибровка датчика ДВСТ-3, 100% диапазона преобразования датчика", MessageBoxButtons.OKCancel);
+                result = MessageBox.Show("Для калибровки установите на образцовом средстве виброскорость 1,00 мм/с, частотой 80 Гц, нажмите кнопку <OK>, для прекращения калибровки - <Отмена>", "Выполнение калибровки", MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
-                    textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% диапазона преобразования датчика...\r\n");
-                    length = HartProtocol.NumberOfPreambulas - 1 + 3;
-                    tmp = new byte[length];
-                    tmp = HartProtocol.GenerateRequest(31);
-                    this.textBox1.Text = ByteToHex(tmp);
-                    SendHartMessage();
-
-                }
-                else textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% от диапазона преобразования датчика отменена\r\n");
-            }
-            else
-            {
-                textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка в первой точке 5% от диапазона преобразования датчика отменена\r\n");
-                result = MessageBox.Show("Для калибровки в точке 100% установите на рабочем эталоне уровень вибрации, соответствующий 100% от диапазона преобразования датчика, нажмите кнопку <OK>, для отмены нажмите кнопку <Отмена>", "Калибровка датчика ДВСТ-3, 100% диапазона преобразования датчика", MessageBoxButtons.OKCancel);
-                if (result == DialogResult.OK)
-                {
-                    textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% диапазона преобразования датчика...\r\n");
+                    textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка в первой точке 5% диапазона преобразования датчика...\r\n");
                     int length = HartProtocol.NumberOfPreambulas - 1 + 3;
                     byte[] tmp = new byte[length];
-                    tmp = HartProtocol.GenerateRequest(31);
+                    tmp = HartProtocol.GenerateRequest(21);
                     this.textBox1.Text = ByteToHex(tmp);
                     SendHartMessage();
-                  //  textBox2.AppendText("Калибровка звершена\r\n");
+                    result = MessageBox.Show("Для калибровки установите на образцовом средстве виброскорость 20,00 мм/с, частотой 80 Гц, нажмите кнопку <OK>, для прекращения калибровки - <Отмена>", "Выполнение калибровки", MessageBoxButtons.OKCancel);
+                    if (result == DialogResult.OK)
+                    {
+                        textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% диапазона преобразования датчика...\r\n");
+                        length = HartProtocol.NumberOfPreambulas - 1 + 3;
+                        tmp = new byte[length];
+                        tmp = HartProtocol.GenerateRequest(31);
+                        this.textBox1.Text = ByteToHex(tmp);
+                        SendHartMessage();
+
+                    }
+                    else textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% от диапазона преобразования датчика отменена\r\n");
                 }
-                else textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% от диапазона преобразования датчика отменена\r\n");
+                else
+                {
+                    textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка в первой точке 5% от диапазона преобразования датчика отменена\r\n");
+                    result = MessageBox.Show("Для калибровки установите на образцовом средстве виброскорость 20,00 мм/с, частотой 80 Гц, нажмите кнопку <OK>, для прекращения калибровки - <Отмена>", "Выполнение калибровки", MessageBoxButtons.OKCancel);
+                    if (result == DialogResult.OK)
+                    {
+                        textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% диапазона преобразования датчика...\r\n");
+                        int length = HartProtocol.NumberOfPreambulas - 1 + 3;
+                        byte[] tmp = new byte[length];
+                        tmp = HartProtocol.GenerateRequest(31);
+                        this.textBox1.Text = ByteToHex(tmp);
+                        SendHartMessage();
+                        //  textBox2.AppendText("Калибровка звершена\r\n");
+                    }
+                    else textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% от диапазона преобразования датчика отменена\r\n");
+                }
+                textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка звершена\r\n");
             }
-            textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка звершена\r\n");
         }
 
         private void label19_Click(object sender, EventArgs e)
@@ -1306,6 +1413,7 @@ namespace sharptest1
 
         private void button14_Click(object sender, EventArgs e)
         {
+            label6.Text = "";
             this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(26));
             SendHartMessage();
         }
@@ -1323,6 +1431,36 @@ namespace sharptest1
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             this.textBox24.Text = "ПО ДВСТ-3";
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void listView1_ControlAdded(object sender, ControlEventArgs e)
+        {
+            //this.label6.Text = "OOOO";
+        }
+
+        private void listView1_TabIndexChanged(object sender, EventArgs e)
+        {
+            //this.label6.Text = "OOOO";
+        }
+
+        private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            //this.label6.Text = "OOOO";
+        }
+
+        private void listView1_ItemActivate(object sender, EventArgs e)
+        {
+            //this.label6.Text = "OOOO";
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
