@@ -33,13 +33,13 @@
   <dependency>
     <dependentOS>
       <osVersionInfo>
-        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+        <os majorVersion="4" minorVersion="10" buildNumber="0" servicePackMajor="0" />
       </osVersionInfo>
     </dependentOS>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
     </dependentAssembly>
   </dependency>
   <dependency>
@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>SSANzrmpNgazKrFul1BGG/6yJOE=</dsig:DigestValue>
+        <dsig:DigestValue>v3jiTv9kWWv9mICxbS81QLGTtMM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -72,13 +72,13 @@
       <dsig:DigestValue>0/wsJmCstLR3mJONt5DBVFYgSWU=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="sharptest1.exe.config" size="159">
+  <file name="sharptest1.exe.config" size="117">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>1MarUy3RuVvHLdw5ozZo3o7j39I=</dsig:DigestValue>
+      <dsig:DigestValue>a3Forh+i+nzyaONrpGeK7Sudu10=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

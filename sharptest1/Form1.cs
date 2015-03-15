@@ -11,8 +11,8 @@ using System.IO.Ports;
 using System.Threading;
 using System.Globalization;
 using System.Net;
-using System.Management;
-using System.Management.Instrumentation;
+//using System.Management;
+//using System.Management.Instrumentation;
 //using System.Management.Instrumentation;
 
 
@@ -54,16 +54,25 @@ namespace sharptest1
     
                
             //}
-            comPortFinder();
+           // comPortFinder();
             while (comboBox1.Items.Count == 0)
             {
-                this.label6.Text = "HART-модем не найден";
+               // this.label6.Text = "HART-модем не найден";
                 var result = MessageBox.Show("Подключите HART-модем к компьютеру для начала работы!", "Внимание!",MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
-                    comPortFinder();
+                {
+                    string[] ports = SerialPort.GetPortNames();
+                    //this.comboBox1.Items.AddRange(portnames);
+                    foreach (string port in ports)//формируем массив доступных для открытия портов
+                    {
+                        this.comboBox1.Items.Add(port);
+                        toolStripComboBox1.Items.Add(port);
+                    }
+                }
+                //comPortFinder();
                 else
                 {
-                    
+
                     this.Close();
                     break;
                 }
@@ -87,48 +96,51 @@ namespace sharptest1
             //пользовательToolStripMenuItem.Checked = true;
         }
 
-        private void comPortFinder()
-        {
-            string[] ports = SerialPort.GetPortNames();
-            string sInstanceName = string.Empty;
-            string sPortName = string.Empty;
-            bool bFound = false;
-            //foreach (string port in ports)//формируем массив доступных для открытия портов
-            //{
-            //    this.comboBox1.Items.Add(port);
-            //    toolStripComboBox1.Items.Add(port);
-            for (int y = 0; y < ports.Length; y++)
-            {
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\WMI", "SELECT * FROM MSSerial_PortName");
-                foreach (ManagementObject queryObj in searcher.Get())
-                {
-                    sInstanceName = queryObj["InstanceName"].ToString();
+        //private void comPortFinder()
+        //{
+        //    string[] ports = SerialPort.GetPortNames();
+        //    string sInstanceName = string.Empty;
+        //    string sPortName = string.Empty;
+        //    bool bFound = false;
+        //    //foreach (string port in ports)//формируем массив доступных для открытия портов
+        //    //{
+        //    //    this.comboBox1.Items.Add(port);
+        //    //    toolStripComboBox1.Items.Add(port);
+        //    if (ports.Length != 0)
+        //        for (int y = 0; y < ports.Length; y++)
+        //        {
+        //            ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\WMI", "SELECT * FROM MSSerial_PortName");
+        //            ManagementObjectCollection qcollection = searcher.Get();
+        //            if ((qcollection != null) | (qcollection.Count != 0))
+        //                foreach (ManagementObject queryObj in qcollection)
+        //                {
+        //                    sInstanceName = queryObj["InstanceName"].ToString();
 
-                    if (sInstanceName.IndexOf("FTDIBUS\\VID_0403+PID_6001+A601PZS2A") > -1)
-                    {
-                        //    {queryObj = {\\ALEXANDR_S\root\WMI:MSSerial_PortName.InstanceName="FTDIBUS\\VID_0403+PID_6001+A601PZS2A\\0000_0"}
-                        sPortName = queryObj["PortName"].ToString();
-                        for (int i = 0; i < comboBox1.Items.Count; i++)
-                        {
-                            if (sPortName == comboBox1.Items[i].ToString())
-                                bFound = true;
-                        }
-                        if (!bFound)
-                        {
-                            this.comboBox1.Items.Add(sPortName);
-                            toolStripComboBox1.Items.Add(sPortName);
-                            //  port = new SerialPort(sPortName, 9600, Parity.None, 8, StopBits.One);
+        //                    if (sInstanceName.IndexOf("FTDIBUS\\VID_0403+PID_6001+A601PZS2A") > -1)
+        //                    {
+        //                        //    {queryObj = {\\ALEXANDR_S\root\WMI:MSSerial_PortName.InstanceName="FTDIBUS\\VID_0403+PID_6001+A601PZS2A\\0000_0"}
+        //                        sPortName = queryObj["PortName"].ToString();
+        //                        for (int i = 0; i < comboBox1.Items.Count; i++)
+        //                        {
+        //                            if (sPortName == comboBox1.Items[i].ToString())
+        //                                bFound = true;
+        //                        }
+        //                        if (!bFound)
+        //                        {
+        //                            this.comboBox1.Items.Add(sPortName);
+        //                            toolStripComboBox1.Items.Add(sPortName);
+        //                            //  port = new SerialPort(sPortName, 9600, Parity.None, 8, StopBits.One);
 
-                            break;
-                        }
+        //                            break;
+        //                        }
 
-                    }
+        //                    }
 
-                }
+        //                }
 
 
-            }   
-        }
+        //        }
+        //}
         private void button1_Click(object sender, EventArgs e)//открываем СОМ порт
         {
 
@@ -838,6 +850,10 @@ namespace sharptest1
             }
             //this.textBox2.Text = ByteToHex(HartProtocol.GenerateRequest(14));
             SendHartMessage();
+            //timer4.Interval = 2000;
+            //timer4.Start();
+            //еще один делэй на 1 сек
+
 
         }
 
@@ -1080,7 +1096,15 @@ namespace sharptest1
                 this.textBox2.AppendText("\r\n" + (DateTime.Now.ToString() + " ---> ") + "Поиск доступных устройств завершен\r\n");
                // MessageBox.Show( "Поиск устройств завершен!", "Внимание!");
                 progressBar1.Value = 0;
-                this.label6.Text = "Если в списке более 1-го подключённого устройства," + "\r\n" + " выберите устройство для дальнейшей работы";
+                if(listView1.Items.Count!=0)
+                    this.label6.Text = "Если в списке более 1-го подключённого устройства," + "\r\n" + " выберите устройство для дальнейшей работы";
+                else
+                    this.label6.Text = "Ни одного устройства не обнаружено," + "\r\n" + " проверьте корректность подключения датчика и наличие питания";
+                timer3.Stop();
+              //  timer3.Stop();
+                this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(1));
+                SendHartMessage();
+                blankCounter = 0;
                 timer3.Stop();
                 //ReadDataCRCError = 7;
                 //if (listView1.Items.Count != 0)
@@ -1269,13 +1293,21 @@ namespace sharptest1
             //if(HartProtocol.SlaveAddress<)
             if ((HartProtocol.SlaveAddress >= 0x0f) || (ReadDataCRCError >= 6))
             {
-                this.button10.Text = "поиск";
+                this.button10.Text = "Поиск";
                 timer3.Stop();
                 timer1.Stop();
                 timer2.Stop();
                 MessageBox.Show("Поиск устройств завершен!", "Внимание!");
+                if(listView1.Items.Count!=0)
+                    this.label6.Text = "Если в списке более 1-го подключённого устройства," + "\r\n" + " выберите устройство для дальнейшей работы";
+                else
+                    this.label6.Text = "Ни одного устройства не обнаружено," + "\r\n" + " проверьте корректность подключения датчика и наличие питания";
 
                 progressBar1.Value = 0;
+                this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(1));
+                SendHartMessage();
+                blankCounter = 0;
+                timer3.Stop();
             }
             else SendHartMessage();
         }
@@ -1530,18 +1562,41 @@ namespace sharptest1
                     Debug.WriteLine("bytes in port");
                     Debug.WriteLine(serialPort1.BytesToRead.ToString());
                     timer3.Start();
+                    delay = 0;
                 }
                 else
                 {
                     delay++;
                     Debug.WriteLine("delaay increased, bytes in port");
                     Debug.WriteLine(serialPort1.BytesToRead.ToString());
-                    if (delay > 10)
+                    if (delay > 8)
                     {
-                        bytesCount = 0;
-                        resendCounter = 0;
-                        delay = 0;
-                        incomingMessageProcessor();
+                        if (bytesCount < 7)//если число принятых байт меньше 7 (3 из которых преамбула), значит мы приняли кривое сообщение, нужно сделать запрос ещё раз
+                        {
+                            blankCounter++;
+                            if (blankCounter > 50)
+                            {
+                                blankCounter = 0;
+                                serialPort1.DiscardOutBuffer();
+                                serialPort1.DiscardInBuffer();
+                                Debug.WriteLine("need resend");
+                                SendHartMessage();
+                                resendCounter++;
+                                if (resendCounter > 10)
+                                {
+                                    resendCounter = 0;
+                                    timer3.Stop();
+                                }
+                            }
+                            timer3.Start();
+                        }
+                        else
+                        {
+                            bytesCount = 0;
+                            resendCounter = 0;
+                            delay = 0;
+                            incomingMessageProcessor();
+                        }
                     }
                     else timer3.Start();
                 }
@@ -1552,10 +1607,12 @@ namespace sharptest1
                 if (blankCounter > 20)
                 {
                     blankCounter = 0;
+                    serialPort1.DiscardOutBuffer();
+                    serialPort1.DiscardInBuffer();
                     Debug.WriteLine("need resend");
                     SendHartMessage();
                     resendCounter++;
-                    if (resendCounter > 20)
+                    if (resendCounter > 10)
                     {
                         resendCounter = 0;
                         timer3.Stop();
@@ -1746,6 +1803,22 @@ namespace sharptest1
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             timer1.Interval = (Int32)numericUpDown2.Value;
+        }
+
+        private void timer4_Tick(object sender, EventArgs e)
+        {
+            this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(1));
+            if (timer1.Enabled)
+            {
+                waitOneCycle = true;
+                savedInterval = timer1.Interval;
+                timer1.Stop();
+                timer1.Interval = 1000;
+                timer1.Start();
+            }
+            SendHartMessage();
+            timer4.Stop();
+
         }
     }
 }

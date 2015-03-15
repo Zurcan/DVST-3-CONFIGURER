@@ -143,11 +143,12 @@
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -162,10 +163,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -1024,13 +1025,24 @@
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
-            // panel2
+            // panel5
             // 
-            this.panel2.Controls.Add(this.label18);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.label3);
-            resources.ApplyResources(this.panel2, "panel2");
-            this.panel2.Name = "panel2";
+            this.panel5.Controls.Add(this.groupBox5);
+            this.panel5.Controls.Add(this.groupBox4);
+            this.panel5.Controls.Add(this.flowLayoutPanel3);
+            resources.ApplyResources(this.panel5, "panel5");
+            this.panel5.Name = "panel5";
+            // 
+            // flowLayoutPanel3
+            // 
+            resources.ApplyResources(this.flowLayoutPanel3, "flowLayoutPanel3");
+            this.flowLayoutPanel3.Controls.Add(this.label6);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
             // 
             // panel4
             // 
@@ -1040,24 +1052,17 @@
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
-            // panel5
+            // panel2
             // 
-            this.panel5.Controls.Add(this.groupBox5);
-            this.panel5.Controls.Add(this.groupBox4);
-            this.panel5.Controls.Add(this.flowLayoutPanel3);
-            resources.ApplyResources(this.panel5, "panel5");
-            this.panel5.Name = "panel5";
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.label3);
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Name = "panel2";
             // 
-            // label6
+            // timer4
             // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // flowLayoutPanel3
-            // 
-            resources.ApplyResources(this.flowLayoutPanel3, "flowLayoutPanel3");
-            this.flowLayoutPanel3.Controls.Add(this.label6);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
             // Form1
             // 
@@ -1095,14 +1100,14 @@
             this.groupBox5.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1228,6 +1233,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Timer timer4;
     }
 }
 
