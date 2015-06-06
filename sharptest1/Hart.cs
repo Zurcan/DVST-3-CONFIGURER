@@ -155,43 +155,54 @@ public class HartProtocol
 
     public static byte[] CutOffPreambulasRecieved(byte[] rec_mes)//обрезаем преамбулы, в данном случае считаем, что первые 2 байта преамбул можно отбросить ввиду того, что их минимальное количество - 3
     {
-        int i=0;
+        int i = 0;
         Array.Reverse(rec_mes);//"переворачиваем" сообщение
-        Array.Resize(ref rec_mes, rec_mes.Length - 1);//обрезаем a первых байта в сообщении
+        Array.Resize(ref rec_mes, rec_mes.Length - 2);//обрезаем 2 первых байта в сообщении
         Array.Reverse(rec_mes);//"переворачиваем" сообщение
-        for(int a =0; a < rec_mes.Length;a++)
+        while (rec_mes[i] == 0xFF)//теперь ждем, пока преамбулы закончатся, обрезая их на каждой итерации
         {
-            if (rec_mes[a] == 0xFF)
-            {
-               // i = a;
-                Array.Reverse(rec_mes);//"переворачиваем" сообщение
-                Array.Resize(ref rec_mes, rec_mes.Length - a);//обрезаем a первых байта в сообщении
-                Array.Reverse(rec_mes);//"переворачиваем" сообщение
-                StringBuilder builder = new StringBuilder(rec_mes.Length * 3);
-                Debug.WriteLine("not preambulas count");
-                Debug.WriteLine(a.ToString());
-                //loop through each byte in the array
-                foreach (byte data in rec_mes)
-                    //convert the byte to a string and add to the stringbuilder
-                    builder.Append(Convert.ToString(data, 16).PadLeft(2, '0').PadRight(3, ' '));
-                a = rec_mes.Length - 1;
-                Debug.WriteLine(builder);
-                
-                
-            }
-
+            Array.Reverse(rec_mes);
+            Array.Resize(ref rec_mes, rec_mes.Length - 1);
+            Array.Reverse(rec_mes);
         }
-        if(rec_mes.Length>0)
-            if (rec_mes[i] == 0xff)
-            {
-                while (rec_mes[i] == 0xFF)//теперь ждем, пока преамбулы закончатся, обрезая их на каждой итерации
-                {
-                    Array.Reverse(rec_mes);
-                    Array.Resize(ref rec_mes, rec_mes.Length - 1);
-                    Array.Reverse(rec_mes);
-                }
-            }
         return rec_mes;//возвращаем сообщение без преамбул
+        //int i=0;
+        //Array.Reverse(rec_mes);//"переворачиваем" сообщение
+        //Array.Resize(ref rec_mes, rec_mes.Length - 1);//обрезаем a первых байта в сообщении
+        //Array.Reverse(rec_mes);//"переворачиваем" сообщение
+        //for(int a =0; a < rec_mes.Length;a++)
+        //{
+        //    if (rec_mes[a] == 0xFF)
+        //    {
+        //       // i = a;
+        //        Array.Reverse(rec_mes);//"переворачиваем" сообщение
+        //        Array.Resize(ref rec_mes, rec_mes.Length - a);//обрезаем a первых байта в сообщении
+        //        Array.Reverse(rec_mes);//"переворачиваем" сообщение
+        //        StringBuilder builder = new StringBuilder(rec_mes.Length * 3);
+        //        Debug.WriteLine("not preambulas count");
+        //        Debug.WriteLine(a.ToString());
+        //        //loop through each byte in the array
+        //        foreach (byte data in rec_mes)
+        //            //convert the byte to a string and add to the stringbuilder
+        //            builder.Append(Convert.ToString(data, 16).PadLeft(2, '0').PadRight(3, ' '));
+        //        a = rec_mes.Length - 1;
+        //        Debug.WriteLine(builder);
+                
+                
+        //    }
+
+        //}
+        //if(rec_mes.Length>0)
+        //    if (rec_mes[i] == 0xff)
+        //    {
+        //        while (rec_mes[i] == 0xFF)//теперь ждем, пока преамбулы закончатся, обрезая их на каждой итерации
+        //        {
+        //            Array.Reverse(rec_mes);
+        //            Array.Resize(ref rec_mes, rec_mes.Length - 1);
+        //            Array.Reverse(rec_mes);
+        //        }
+        //    }
+        //return rec_mes;//возвращаем сообщение без преамбул
     }
 
     public static byte[] ReadInputdataToSend(int commNumber)//здесь в зависимости от команды выбираем, что будем слать
@@ -334,12 +345,16 @@ public class HartProtocol
     public static bool CheckMessageIntegrity(byte[] recMes)
     {
         recMes = CutOffPreambulasRecieved(recMes);
-        if (recMes.Length > 4)
-        {
-            if (recMes[3] + 4 > recMes.Length) return false;
-            else return true;
-        }
-        else return false;
+        if (recMes[3] + 4 > recMes.Length) return false;
+        else return true;
+
+        //recMes = CutOffPreambulasRecieved(recMes);
+        //if (recMes.Length > 4)
+        //{
+        //    if (recMes[3] + 4 > recMes.Length) return false;
+        //    else return true;
+        //}
+        //else return false;
 
     }
     public static byte[] CutOffGhostBytes(byte[] recMes)

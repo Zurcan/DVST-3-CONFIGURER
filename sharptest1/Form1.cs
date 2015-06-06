@@ -37,8 +37,11 @@ namespace sharptest1
         int bytesCount = 0;
         int blankCounter = 0;
         int resendCounter = 0;
+        bool searchMode = false;
+        int resendCommandCounter = 0;
         int delay = 0;
         bool waitOneCycle = false;
+        bool answerWaiting = false;
         int savedInterval = 1000;
         int ReadDataCRCError;//счетчик ошибок, считает до 5ти, а дальше отключает опрос
         bool ReadDataCRCOk=false;
@@ -244,6 +247,7 @@ namespace sharptest1
         private void SendHartMessage()
         {
             float ftext;
+            answerWaiting = true;
             if (listView1.Items.Count > 0)
             {
                 if (listView1.Items.Count == 1)
@@ -826,6 +830,8 @@ namespace sharptest1
 
         private void button6_Click(object sender, EventArgs e)
         {
+            button6.Enabled = false;
+            timer5.Start();
             label6.Text = "";
             float ftext;
             serialPort1.DiscardInBuffer();
@@ -865,7 +871,10 @@ namespace sharptest1
 
         private void button8_Click(object sender, EventArgs e)
         {
+            button8.Enabled = false;
+            timer5.Start();
             label6.Text = "";
+
             if (checkBox1.Checked)
             {
                 if (button8.Text == "Включить циклический запрос измерений")
@@ -1057,8 +1066,11 @@ namespace sharptest1
 
         private void button10_Click(object sender, EventArgs e)
         {
+            timer5.Start();
+            button10.Enabled = false;
             progressBar1.Visible = true;
             progressBar1.Value = 0;
+            searchMode = true;
             if (this.button10.Text == "Поиск")
             {
                 listView1.Items.Clear();
@@ -1071,6 +1083,16 @@ namespace sharptest1
               //  this.label6.Text = "Нажмите <Поиск> для определения подключённых к СОМ порту устроств";
                 ReadDataCRCOk = false;
                 ReadDataCRCError = 0;
+                textBox3.Clear();
+                textBox15.Clear();
+                textBox16.Clear();
+                textBox18.Clear();
+                textBox19.Clear();
+                textBox20.Clear();
+                textBox21.Clear();
+                textBox22.Clear();
+                textBox23.Clear();
+                textBox24.Clear();
                 HartProtocol.SlaveAddress = 0;
                 HartProtocol.LastSendedCommand = 0;
                 this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(0));
@@ -1084,7 +1106,7 @@ namespace sharptest1
             else
             {
                 this.timer2.Stop();
-                
+                searchMode = false;
                // ReadDataCRCOk = false;
                 progressBar1.Value = 15;
                 HartProtocol.SlaveAddress = 0;
@@ -1136,6 +1158,16 @@ namespace sharptest1
                 groupBox3.Enabled = false;
               //  panel2.Enabled = false;
                 groupBox2.Enabled = false;
+                textBox3.Clear();
+                textBox15.Clear();
+                textBox16.Clear();
+                textBox18.Clear();
+                textBox19.Clear();
+                textBox20.Clear();
+                textBox21.Clear();
+                textBox22.Clear();
+                textBox23.Clear();
+                textBox24.Clear();
                 this.label6.Text = "Нажмите <Поиск> для определения подключённых к СОМ порту устроств";
             }
            // else listView1.SelectedItems.IndexOf = listView1.FocusedItem.Index;
@@ -1294,6 +1326,7 @@ namespace sharptest1
             if ((HartProtocol.SlaveAddress >= 0x0f) || (ReadDataCRCError >= 6))
             {
                 this.button10.Text = "Поиск";
+                searchMode = false;
                 timer3.Stop();
                 timer1.Stop();
                 timer2.Stop();
@@ -1340,7 +1373,7 @@ namespace sharptest1
 
         private void мониторВТ003ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Программа разработана специально для конфигурирования и управления датчиком ДВСТ-3.\r\nг. Таганрог ТКБ 'Виброприбор'. Версия ПО 0.8, релиз от 20.01.2013", "О программе 'Конфигуратор ДВСТ-3'");
+            MessageBox.Show("Программа разработана специально для конфигурирования и управления датчиком ДВСТ-3.\r\nг. Таганрог ТКБ 'Виброприбор'. Версия ПО 1.0, релиз от 15.03.2015", "О программе 'Конфигуратор ДВСТ-3'");
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1444,6 +1477,8 @@ namespace sharptest1
 
         private void button12_Click(object sender, EventArgs e)
         {
+            button12.Enabled = false;
+            timer5.Start();
             this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(0));
             if (timer1.Enabled)
             {
@@ -1458,6 +1493,7 @@ namespace sharptest1
 
         private void button13_Click(object sender, EventArgs e)
         {
+
             label6.Text = "";
             bool calibrationBreak = false;
             timer1.Stop();
@@ -1553,84 +1589,138 @@ namespace sharptest1
         private void timer3_Tick(object sender, EventArgs e)
         {
             timer3.Stop();
-            if (serialPort1.BytesToRead > 0)
-            {
-                if (serialPort1.BytesToRead > bytesCount)
-                {
-                    bytesCount = serialPort1.BytesToRead;
+            bool exitFoo = false;
+            //if (serialPort1.BytesToRead > 0)
+            //{
+            //    if (serialPort1.BytesToRead > bytesCount)
+            //    {
+            //        bytesCount = serialPort1.BytesToRead;
 
-                    Debug.WriteLine("bytes in port");
-                    Debug.WriteLine(serialPort1.BytesToRead.ToString());
-                    timer3.Start();
-                    delay = 0;
-                }
-                else
-                {
-                    delay++;
-                    Debug.WriteLine("delaay increased, bytes in port");
-                    Debug.WriteLine(serialPort1.BytesToRead.ToString());
-                    if (delay > 8)
-                    {
-                        if (bytesCount < 7)//если число принятых байт меньше 7 (3 из которых преамбула), значит мы приняли кривое сообщение, нужно сделать запрос ещё раз
-                        {
-                            blankCounter++;
-                            if (blankCounter > 50)
-                            {
-                                blankCounter = 0;
-                                serialPort1.DiscardOutBuffer();
-                                serialPort1.DiscardInBuffer();
-                                Debug.WriteLine("need resend");
-                                SendHartMessage();
-                                resendCounter++;
-                                if (resendCounter > 10)
-                                {
-                                    resendCounter = 0;
-                                    timer3.Stop();
-                                }
-                            }
-                            timer3.Start();
-                        }
-                        else
-                        {
-                            bytesCount = 0;
-                            resendCounter = 0;
-                            delay = 0;
-                            incomingMessageProcessor();
-                        }
-                    }
-                    else timer3.Start();
-                }
-            }
-            else
-            {
-                blankCounter++;
-                if (blankCounter > 20)
-                {
-                    blankCounter = 0;
-                    serialPort1.DiscardOutBuffer();
-                    serialPort1.DiscardInBuffer();
-                    Debug.WriteLine("need resend");
-                    SendHartMessage();
-                    resendCounter++;
-                    if (resendCounter > 10)
-                    {
-                        resendCounter = 0;
-                        timer3.Stop();
-                    }
-                }
-                timer3.Start();
-            }
-            //if (serialPort1.BytesToRead - 5 > HartProtocol.GetCommandDataLength(HartProtocol.lastCommand))
+            //        Debug.WriteLine("bytes in port");
+            //        Debug.WriteLine(serialPort1.BytesToRead.ToString());
+            //        timer3.Start();
+            //        delay = 0;
+            //    }
+            //    else
+            //    {
+            //        delay++;
+            //        Debug.WriteLine("delaay increased, bytes in port");
+            //        Debug.WriteLine(serialPort1.BytesToRead.ToString());
+            //        if (delay > 8)
+            //        {
+            //            if (bytesCount < 7)//если число принятых байт меньше 7 (3 из которых преамбула), значит мы приняли кривое сообщение, нужно сделать запрос ещё раз
+            //            {
+            //                blankCounter++;
+            //                if (blankCounter > 50)
+            //                {
+            //                    blankCounter = 0;
+            //                    serialPort1.DiscardOutBuffer();
+            //                    serialPort1.DiscardInBuffer();
+            //                    Debug.WriteLine("need resend");
+            //                    SendHartMessage();
+            //                    resendCounter++;
+            //                    if (resendCounter > 10)
+            //                    {
+            //                        resendCounter = 0;
+            //                        timer3.Stop();
+            //                    }
+            //                }
+            //                timer3.Start();
+            //            }
+            //            else
+            //            {
+            //                bytesCount = 0;
+            //                resendCounter = 0;
+            //                delay = 0;
+            //                incomingMessageProcessor();
+            //            }
+            //        }
+            //        else timer3.Start();
+            //    }
+            //}
+            //else
+            //{
+            //    blankCounter++;
+            //    if (blankCounter > 20)
+            //    {
+            //        blankCounter = 0;
+            //        serialPort1.DiscardOutBuffer();
+            //        serialPort1.DiscardInBuffer();
+            //        Debug.WriteLine("need resend");
+            //        SendHartMessage();
+            //        resendCounter++;
+            //        if (resendCounter > 10)
+            //        {
+            //            resendCounter = 0;
+            //            timer3.Stop();
+            //        }
+            //    }
+            //    timer3.Start();
+            //}
+            //if (serialPort1.BytesToRead - 10 >= HartProtocol.GetCommandDataLength(HartProtocol.lastCommand))
             //{
             //    Debug.WriteLine("bytes in port");
             //    Debug.WriteLine(serialPort1.BytesToRead.ToString());
-                
+
             //    incomingMessageProcessor();
             //}
             //else
             //{
-            //    timer3.Start();
-            //}
+            if(answerWaiting)
+            {
+                if (serialPort1.BytesToRead >= 7)
+                {
+                    if (ReadBytesLastCycle == serialPort1.BytesToRead)
+                        resendCounter++;
+                    else
+                        resendCounter = 0;
+                    Debug.WriteLine("bytes in port");
+                    Debug.WriteLine(serialPort1.BytesToRead.ToString());
+                }
+                else//resend hart message cycle
+                {
+                    if(!searchMode)
+                        resendCommandCounter++;
+                    resendCounter = 0;
+                    switch (resendCommandCounter)
+                    {
+                        case 200:
+                            SendHartMessage();
+                            break;
+                        case 400:
+                            SendHartMessage();
+                            break;
+                        case 600:
+                            SendHartMessage();
+                            break;
+                        case 800:
+                            textBox2.AppendText("\r\n" + (DateTime.Now.ToString() + " ---> ")+"Внимание! Ответ от датчика не получен! Повторите запрос!");
+                            answerWaiting = false;
+                            resendCommandCounter = 0;
+                            exitFoo = true;
+                            break;
+                    }
+
+                }
+                ReadBytesLastCycle = serialPort1.BytesToRead;
+                if (resendCounter >= 10)
+                {
+                    answerWaiting = false;
+                    Debug.WriteLine("bytes in port");
+                    Debug.WriteLine(serialPort1.BytesToRead.ToString());
+                    resendCounter = 0;
+                    resendCommandCounter = 0;
+                    incomingMessageProcessor();
+                }
+                else
+                {
+                    if (!exitFoo)
+                        timer3.Start();
+                    else
+                        timer3.Stop();
+                }
+           }
+
         }
         private void incomingMessageProcessor()
         {
@@ -1734,6 +1824,8 @@ namespace sharptest1
 
         private void button14_Click(object sender, EventArgs e)
         {
+            button14.Enabled = false;
+            timer5.Start();
             label6.Text = "";
             this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(26));
             if (timer1.Enabled)
@@ -1820,5 +1912,38 @@ namespace sharptest1
             timer4.Stop();
 
         }
+
+        private void numericUpDown2_Leave(object sender, EventArgs e)
+        {
+            timer1.Interval = (Int32)numericUpDown2.Value;
+        }
+
+        private void numericUpDown2_Validated(object sender, EventArgs e)
+        {
+            timer1.Interval = (Int32)numericUpDown2.Value;
+        }
+
+        private void numericUpDown2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            timer1.Interval = (Int32)numericUpDown2.Value;
+        }
+
+        private void numericUpDown2_ImeModeChanged(object sender, EventArgs e)
+        {
+            timer1.Interval = (Int32)numericUpDown2.Value;
+        }
+
+        private void timer5_Tick(object sender, EventArgs e)
+        {
+            //Debug.WriteLine(sender.ToString());
+            timer5.Stop();
+            button10.Enabled = true;
+            button12.Enabled = true;
+            button14.Enabled = true;
+            button8.Enabled = true;
+            button6.Enabled = true;
+        }
+
+ 
     }
 }

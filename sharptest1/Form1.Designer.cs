@@ -149,6 +149,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.timer5 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -172,7 +173,7 @@
             // serialPort1
             // 
             this.serialPort1.BaudRate = 1200;
-            this.serialPort1.ReadBufferSize = 16;
+            this.serialPort1.ReadBufferSize = 32;
             this.serialPort1.ReadTimeout = 200;
             this.serialPort1.WriteTimeout = 200;
             // 
@@ -226,8 +227,8 @@
             this.выборПортаToolStripMenuItem,
             this.открытьToolStripMenuItem,
             this.закрытьToolStripMenuItem});
-            this.cOMПортToolStripMenuItem.Name = "cOMПортToolStripMenuItem";
             resources.ApplyResources(this.cOMПортToolStripMenuItem, "cOMПортToolStripMenuItem");
+            this.cOMПортToolStripMenuItem.Name = "cOMПортToolStripMenuItem";
             // 
             // выборПортаToolStripMenuItem
             // 
@@ -258,8 +259,8 @@
             this.логинToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.пользовательToolStripMenuItem,
             this.администраторToolStripMenuItem});
-            this.логинToolStripMenuItem.Name = "логинToolStripMenuItem";
             resources.ApplyResources(this.логинToolStripMenuItem, "логинToolStripMenuItem");
+            this.логинToolStripMenuItem.Name = "логинToolStripMenuItem";
             // 
             // пользовательToolStripMenuItem
             // 
@@ -318,8 +319,8 @@
             // 
             // помощьToolStripMenuItem
             // 
-            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
             resources.ApplyResources(this.помощьToolStripMenuItem, "помощьToolStripMenuItem");
+            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
             // 
             // listView1
             // 
@@ -935,6 +936,11 @@
             // 
             // numericUpDown2
             // 
+            this.numericUpDown2.Increment = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             resources.ApplyResources(this.numericUpDown2, "numericUpDown2");
             this.numericUpDown2.Maximum = new decimal(new int[] {
             100000,
@@ -947,6 +953,7 @@
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.ReadOnly = true;
             this.numericUpDown2.Value = new decimal(new int[] {
             1000,
             0,
@@ -1063,6 +1070,11 @@
             // timer4
             // 
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
+            // 
+            // timer5
+            // 
+            this.timer5.Interval = 1000;
+            this.timer5.Tick += new System.EventHandler(this.timer5_Tick);
             // 
             // Form1
             // 
@@ -1234,6 +1246,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Timer timer4;
+        private System.Windows.Forms.Timer timer5;
     }
 }
 
