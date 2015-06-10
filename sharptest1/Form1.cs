@@ -11,6 +11,8 @@ using System.IO.Ports;
 using System.Threading;
 using System.Globalization;
 using System.Net;
+using Microsoft.VisualBasic;
+
 //using System.Management;
 //using System.Management.Instrumentation;
 //using System.Management.Instrumentation;
@@ -32,7 +34,7 @@ namespace sharptest1
             
         }
         string spRead;
-        
+        bool timer6finished=false;
         int ReadBytesLastCycle=0;
         int bytesCount = 0;
         int blankCounter = 0;
@@ -871,8 +873,10 @@ namespace sharptest1
 
         private void button8_Click(object sender, EventArgs e)
         {
-            button8.Enabled = false;
-            timer5.Start();
+            //button8.Enabled = false;
+            //timer5.Interval = 300;
+            //timer5.Start();
+            //timer5.Interval = 1000;
             label6.Text = "";
 
             if (checkBox1.Checked)
@@ -1533,6 +1537,7 @@ namespace sharptest1
                 result = MessageBox.Show("Для калибровки установите на образцовом средстве виброскорость " + tmp1 + ", частотой 80 Гц, нажмите кнопку <OK>, для прекращения калибровки - <Отмена>", "Выполнение калибровки", MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
+                    System.Threading.Thread.Sleep(1000);
                     textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка в первой точке 5% диапазона преобразования датчика...\r\n");
                     int length = HartProtocol.NumberOfPreambulas - 1 + 3;
                     byte[] tmp = new byte[length];
@@ -1542,6 +1547,7 @@ namespace sharptest1
                     result = MessageBox.Show("Для калибровки установите на образцовом средстве виброскорость "+tmp2+", частотой 80 Гц, нажмите кнопку <OK>, для прекращения калибровки - <Отмена>", "Выполнение калибровки", MessageBoxButtons.OKCancel);
                     if (result == DialogResult.OK)
                     {
+                        System.Threading.Thread.Sleep(1000);
                         textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% диапазона преобразования датчика...\r\n");
                         length = HartProtocol.NumberOfPreambulas - 1 + 3;
                         tmp = new byte[length];
@@ -1558,10 +1564,12 @@ namespace sharptest1
                 }
                 else
                 {
+                    System.Threading.Thread.Sleep(1000);
                     textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка в первой точке 5% от диапазона преобразования датчика отменена\r\n");
                     result = MessageBox.Show("Для калибровки установите на образцовом средстве виброскорость "+tmp2+", частотой 80 Гц, нажмите кнопку <OK>, для прекращения калибровки - <Отмена>", "Выполнение калибровки", MessageBoxButtons.OKCancel);
                     if (result == DialogResult.OK)
                     {
+                        System.Threading.Thread.Sleep(1000);
                         textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Калибровка во второй точке 100% диапазона преобразования датчика...\r\n");
                         int length = HartProtocol.NumberOfPreambulas - 1 + 3;
                         byte[] tmp = new byte[length];
@@ -1585,7 +1593,13 @@ namespace sharptest1
         {
 
         }
-
+        //public void CloseIt()
+        //{
+        //    System.Threading.Thread.Sleep(2000);
+        //    Microsoft.VisualBasic.Interaction.AppActivate(
+        //         System.Diagnostics.Process.GetCurrentProcess().Id);
+        //    System.Windows.Forms.SendKeys.SendWait(" ");
+        //}
         private void timer3_Tick(object sender, EventArgs e)
         {
             timer3.Stop();
@@ -1753,6 +1767,12 @@ namespace sharptest1
                     byte[] buffer_ = HartProtocol.CutOffPreambulasRecieved(buffer);
                     
                     buffer_ = HartProtocol.CutOffGhostBytes(buffer_);
+                    StringBuilder builder = new StringBuilder(buffer_.Length * 3);
+                    //loop through each byte in the array
+                    foreach (byte data in buffer_)
+                        //convert the byte to a string and add to the stringbuilder
+                        builder.Append(Convert.ToString(data, 16).PadLeft(2, '0').PadRight(3, ' '));
+                    Debug.WriteLine(builder.ToString().ToUpper());
                     if (HartProtocol.CheckCRC(buffer_) == 1)
                     {
                         spRead += " ---> CRC OK!";
@@ -1942,6 +1962,13 @@ namespace sharptest1
             button14.Enabled = true;
             button8.Enabled = true;
             button6.Enabled = true;
+        }
+
+        private void timer6_Tick(object sender, EventArgs e)
+        {
+            timer6.Stop();
+            timer6finished = true;
+            Debug.WriteLine("timer6 tick tick");
         }
 
  

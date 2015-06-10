@@ -155,16 +155,58 @@ public class HartProtocol
 
     public static byte[] CutOffPreambulasRecieved(byte[] rec_mes)//обрезаем преамбулы, в данном случае считаем, что первые 2 байта преамбул можно отбросить ввиду того, что их минимальное количество - 3
     {
-        int i = 0;
-        Array.Reverse(rec_mes);//"переворачиваем" сообщение
-        Array.Resize(ref rec_mes, rec_mes.Length - 2);//обрезаем 2 первых байта в сообщении
-        Array.Reverse(rec_mes);//"переворачиваем" сообщение
-        while (rec_mes[i] == 0xFF)//теперь ждем, пока преамбулы закончатся, обрезая их на каждой итерации
+        int i = 0,preambsCounter=0;
+        bool cuttingFinished = false;
+        //Array.Reverse(rec_mes);//"переворачиваем" сообщение
+        //Array.Resize(ref rec_mes, rec_mes.Length - 2);//обрезаем 2 первых байта в сообщении
+        //Array.Reverse(rec_mes);//"переворачиваем" сообщение
+        //while (rec_mes[i] == 0xFF)//теперь ждем, пока преамбулы закончатся, обрезая их на каждой итерации
+        //while (rec_mes[i] != 0xFF)//теперь ждем, пока преамбулы закончатся, обрезая их на каждой итерации
+        //{
+        //    Array.Reverse(rec_mes);
+        //    Array.Resize(ref rec_mes, rec_mes.Length - 1);
+        //    Array.Reverse(rec_mes);
+        //}
+        //while (rec_mes[i] == 0xFF)//теперь ждем, пока преамбулы закончатся, обрезая их на каждой итерации
+        //{
+        //    Array.Reverse(rec_mes);
+        //    Array.Resize(ref rec_mes, rec_mes.Length - 1);
+        //    Array.Reverse(rec_mes);
+        //}
+        for (int a = 0; a < rec_mes.Length; a++)
         {
-            Array.Reverse(rec_mes);
-            Array.Resize(ref rec_mes, rec_mes.Length - 1);
-            Array.Reverse(rec_mes);
+            //while (!cuttingFinished)
+            //{
+                if (rec_mes[a] == 0xff)
+                {
+                    preambsCounter++;
+                    //if (preambsCounter >= 3)
+                    //{
+                    //    Array.Reverse(rec_mes);
+                    //    Array.Resize(ref rec_mes, rec_mes.Length - preambsCounter);
+                    //    Array.Reverse(rec_mes);
+                    //    cuttingFinished = true;
+
+                    //}
+                }
+                else
+                {
+                    if (preambsCounter >= 3)
+                    {
+                        Array.Reverse(rec_mes);
+                        Array.Resize(ref rec_mes, rec_mes.Length - a);
+                        Array.Reverse(rec_mes);
+                   //     cuttingFinished = true;
+                    }
+                    preambsCounter = 0;
+                }
+           // }
+
         }
+        //else   
+        //Debug.WriteLine("after cutoff preambulas");
+        //string tmp = " ";
+
         return rec_mes;//возвращаем сообщение без преамбул
         //int i=0;
         //Array.Reverse(rec_mes);//"переворачиваем" сообщение
