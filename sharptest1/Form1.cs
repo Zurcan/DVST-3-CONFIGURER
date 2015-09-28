@@ -34,6 +34,7 @@ namespace sharptest1
             
         }
         string spRead;
+        int repushCounter = 0;//on message send fail, resend current message counter
         bool timer6finished=false;
         int ReadBytesLastCycle=0;
         int bytesCount = 0;
@@ -286,6 +287,8 @@ namespace sharptest1
             {
                 byte[] buf = HartProtocol.AppendCRC(HexToByte(this.textBox1.Text));//добавляем контрольную сумму к запросу
                 HartProtocol.lastCommand = buf[6];
+                Debug.WriteLine("from sendhartmessage");
+                Debug.WriteLine(HartProtocol.lastCommand.ToString());
                 if (serialPort1.IsOpen) serialPort1.Write(
                       buf, 0, buf.GetLength(0));//в этой части мы должны устанавливать количество байт, ожидаемых к приему WaitingBytesQ
                 //this.textBox2.Text = HartProtocol.CalculateCRC(buf).ToString();
@@ -484,10 +487,11 @@ namespace sharptest1
             {
                 if (this.checkBox1.Checked)//если установлена галка циклической отправки
                 {
-                    this.serialPort1.DiscardInBuffer();//обнуляем буфер входящих
+                   // this.serialPort1.DiscardInBuffer();//обнуляем буфер входящих
                     this.textBox1.Text = ByteToHex(HartProtocol.GenerateRequest(1));
                     byte[] buf = HartProtocol.AppendCRC(HexToByte(this.textBox1.Text));//сообщение в графе "на отправку" не изменяется, но к нему добавляется контрольная сумма
                     HartProtocol.lastCommand = buf[6];
+                    answerWaiting = true;
                     if (serialPort1.IsOpen)
                         serialPort1.Write(buf, 0, buf.GetLength(0));//шлём сообщение
                     this.timer1.Start();//стартуем таймер
@@ -873,9 +877,9 @@ namespace sharptest1
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //button8.Enabled = false;
-            //timer5.Interval = 300;
-            //timer5.Start();
+            button8.Enabled = false;
+            timer5.Interval = 1500;
+            timer5.Start();
             //timer5.Interval = 1000;
             label6.Text = "";
 
@@ -1022,7 +1026,10 @@ namespace sharptest1
                 администраторToolStripMenuItem.Checked = true;
                 пользовательToolStripMenuItem.Checked = false;
                 toolStripTextBox1.Text = "";
-                if (button1.Text == "Закрыть COM порт") button2.Enabled = true;
+                button9.Enabled = true;
+                button9.Visible = true;
+                if (button1.Text == "Закрыть COM порт")
+                        button2.Enabled = true;
                 textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Начало сессии администратора\r\n");
             }
                 
@@ -1032,6 +1039,8 @@ namespace sharptest1
         {
             tabControl1.Enabled = true;
             panel1.Enabled = false;
+            button9.Enabled = false;
+            button9.Visible = false;
             пользовательToolStripMenuItem.Checked = true;
             администраторToolStripMenuItem.Checked = false;
         }
@@ -1056,6 +1065,8 @@ namespace sharptest1
                     panel1.Enabled = true;
                     администраторToolStripMenuItem.Checked = true;
                     пользовательToolStripMenuItem.Checked = false;
+                    button9.Enabled = true;
+                    button9.Visible = true;
                     toolStripTextBox1.Text = "";
                     if (button1.Text == "Закрыть COM порт") button2.Enabled = true;
                     textBox2.AppendText((DateTime.Now.ToString() + " ---> ") + "Начало сессии администратора\r\n");
@@ -1276,7 +1287,7 @@ namespace sharptest1
  
 
         }
-        private void timer2_Tick(object sender, EventArgs e)
+        private void timer2_Tick(object sender, EventArgs e)//com process timer
         {
             //ReadDataCRCOk = false;
             int SendMessageMode=0;// 0 - обычный режим отправки запросов, сопровождается наращиванием адресов в случае отсутствия ответа (но не в случае ошибки CRC), 1 - повторная отсылка запроса на тот же адрес, в случае наличии ошибок CRC, 2 - отправка 2го запроса ответившему устройству для получения его серийного номера.
@@ -1680,6 +1691,9 @@ namespace sharptest1
             //}
             //else
             //{
+            Debug.WriteLine("ticks timer3");
+            Debug.WriteLine(answerWaiting);
+            Debug.WriteLine(resendCounter);
             if(answerWaiting)
             {
                 if (serialPort1.BytesToRead >= 7)
@@ -1756,16 +1770,26 @@ namespace sharptest1
                 
                 this.serialPort1.Read(buffer, 0, serialPort1.BytesToRead);
                 //Array.Reverse(buffer);
-
+                repushCounter = 1;
                 System.Diagnostics.Debug.WriteLine(ByteToHex(buffer));
                 if (HartProtocol.CheckMessageIntegrity(buffer))
                 {
                     // HartProtocol.CutOffGhostBytes(buffer);
+                    Debug.WriteLine("check message integrity fine");
+                    Debug.WriteLine(repushCounter);
+                    repushCounter = 0;
+                        button10.Enabled = true;
+                        button12.Enabled = true;
+                        button14.Enabled = true;
+                        button8.Enabled = true;
+                        button6.Enabled = true;
+                    //timer5.Interval = 2000;
+                    //timer5.Start();
                     Array.Reverse(buffer);
                     spRead = ByteToHex(buffer);
 
                     byte[] buffer_ = HartProtocol.CutOffPreambulasRecieved(buffer);
-                    
+
                     buffer_ = HartProtocol.CutOffGhostBytes(buffer_);
                     StringBuilder builder = new StringBuilder(buffer_.Length * 3);
                     //loop through each byte in the array
@@ -1781,7 +1805,7 @@ namespace sharptest1
                         ReadDataCRCOk = true;
                         if (HartProtocol.LastSendedCommand == 14)
                         {
-                            
+
                             spRead += "\r\n" + (DateTime.Now.ToString() + " ---> ");
                             if (upperlimit == "10")
                             {
@@ -1803,14 +1827,14 @@ namespace sharptest1
                                 spRead += "установлен диапазон измерений 0-50 мм/с";
                                 tmpItem[4] = "0...50 мм/с";
                             }
-                            
+
                             ListViewItem NewItem = new ListViewItem(tmpItem, 1);
                             NewItem.UseItemStyleForSubItems = true;
                             NewItem.ForeColor = Color.BlueViolet;
                             listView1.Items.RemoveAt(0);
                             listView1.Items.Add(NewItem);
-                            
-                            
+
+
                         }
                     }
                     else
@@ -1830,11 +1854,23 @@ namespace sharptest1
 
                     this.demoThread.Start();
                     // ReadBytesLastCycle = 0;
-                    this.serialPort1.DiscardInBuffer();
-                    this.serialPort1.DiscardOutBuffer();
-                    this.serialPort1.Close();
-                    this.serialPort1.Open();
+                    //this.serialPort1.DiscardInBuffer();
+                    //this.serialPort1.DiscardOutBuffer();
+                    //this.serialPort1.Close();
+                    //this.serialPort1.Open();
                     ReadBytesLastCycle = 0;
+                }
+                else
+                {
+
+                    repushCounter++;
+                    if (repushCounter < 5)
+                        SendHartMessage();
+                    else
+                    {
+                        repushCounter = 0;
+                        
+                    }
                 }
                 // }
             }
@@ -1957,11 +1993,14 @@ namespace sharptest1
         {
             //Debug.WriteLine(sender.ToString());
             timer5.Stop();
-            button10.Enabled = true;
-            button12.Enabled = true;
-            button14.Enabled = true;
-            button8.Enabled = true;
-            button6.Enabled = true;
+            if (repushCounter == 0)
+            {
+                button10.Enabled = true;
+                button12.Enabled = true;
+                button14.Enabled = true;
+                button8.Enabled = true;
+                button6.Enabled = true;
+            }
         }
 
         private void timer6_Tick(object sender, EventArgs e)

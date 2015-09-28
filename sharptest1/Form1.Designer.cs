@@ -260,8 +260,8 @@
             this.логинToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.пользовательToolStripMenuItem,
             this.администраторToolStripMenuItem});
-            resources.ApplyResources(this.логинToolStripMenuItem, "логинToolStripMenuItem");
             this.логинToolStripMenuItem.Name = "логинToolStripMenuItem";
+            resources.ApplyResources(this.логинToolStripMenuItem, "логинToolStripMenuItem");
             // 
             // пользовательToolStripMenuItem
             // 
@@ -392,7 +392,7 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 1000;
+            this.timer2.Interval = 1300;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // panel3
@@ -460,7 +460,7 @@
             // 
             resources.ApplyResources(this.button9, "button9");
             this.button9.Name = "button9";
-            this.button9.UseVisualStyleBackColor = true;
+            this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button4

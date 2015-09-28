@@ -166,3 +166,16 @@ C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.exe.
 C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.application
 C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.exe.manifest
 C:\Users\Alexandr\Desktop\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.application
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.exe.config
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.exe
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.pdb
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.exe.manifest
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.application
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.exe
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\bin\Debug\sharptest1.pdb
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.csprojResolveAssemblyReference.cache
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.Form1.resources
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.Properties.Resources.resources
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.csproj.GenerateResource.Cache
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.exe.manifest
+C:\Users\Alexandr\Desktop\prg\DVST-3-CONFIGURER\sharptest1\obj\x86\Debug\sharptest1.application

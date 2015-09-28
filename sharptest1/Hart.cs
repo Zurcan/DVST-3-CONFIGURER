@@ -196,7 +196,7 @@ public class HartProtocol
                         Array.Reverse(rec_mes);
                         Array.Resize(ref rec_mes, rec_mes.Length - a);
                         Array.Reverse(rec_mes);
-                   //     cuttingFinished = true;
+                        cuttingFinished = true;
                     }
                     preambsCounter = 0;
                 }
@@ -204,10 +204,13 @@ public class HartProtocol
 
         }
         //else   
-        //Debug.WriteLine("after cutoff preambulas");
+        Debug.WriteLine("after cutoff preambulas");
+        Debug.WriteLine(cuttingFinished);
         //string tmp = " ";
-
-        return rec_mes;//возвращаем сообщение без преамбул
+        if (cuttingFinished)
+            return rec_mes;//возвращаем сообщение без преамбул
+        else
+            return rec_mes = null;
         //int i=0;
         //Array.Reverse(rec_mes);//"переворачиваем" сообщение
         //Array.Resize(ref rec_mes, rec_mes.Length - 1);//обрезаем a первых байта в сообщении
@@ -387,8 +390,13 @@ public class HartProtocol
     public static bool CheckMessageIntegrity(byte[] recMes)
     {
         recMes = CutOffPreambulasRecieved(recMes);
-        if (recMes[3] + 4 > recMes.Length) return false;
-        else return true;
+        if (recMes != null)
+        {
+            if (recMes[3] + 4 > recMes.Length) return false;
+            else return true;
+        }
+        else
+            return false;
 
         //recMes = CutOffPreambulasRecieved(recMes);
         //if (recMes.Length > 4)
